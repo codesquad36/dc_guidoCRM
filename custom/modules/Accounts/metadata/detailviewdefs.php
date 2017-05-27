@@ -40,25 +40,21 @@ array (
           'file' => 'modules/Accounts/Account.js',
         ),
       ),
-      'useTabs' => true,
+      'useTabs' => false,
       'tabDefs' => 
       array (
         'LBL_ACCOUNT_INFORMATION' => 
         array (
-          'newTab' => true,
+          'newTab' => false,
           'panelDefault' => 'expanded',
         ),
         'LBL_PANEL_ADVANCED' => 
         array (
-          'newTab' => true,
-          'panelDefault' => 'expanded',
-        ),
-        'LBL_PANEL_ASSIGNMENT' => 
-        array (
-          'newTab' => true,
+          'newTab' => false,
           'panelDefault' => 'expanded',
         ),
       ),
+      'syncDetailEditViews' => true,
     ),
     'panels' => 
     array (
@@ -83,6 +79,15 @@ array (
         array (
           0 => 
           array (
+            'name' => 'grootaandeelhouder',
+            'label' => 'LBL_GROONTAANDEELHOUDER',
+          ),
+          1 => '',
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
             'name' => 'website',
             'type' => 'link',
             'label' => 'LBL_WEBSITE',
@@ -97,7 +102,7 @@ array (
             'label' => 'LBL_HOUSE_NUMBER',
           ),
         ),
-        2 => 
+        3 => 
         array (
           0 => 
           array (
@@ -106,7 +111,7 @@ array (
             'label' => 'LBL_EMAIL',
           ),
         ),
-        3 => 
+        4 => 
         array (
           0 => 
           array (
@@ -129,7 +134,7 @@ array (
             ),
           ),
         ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -138,7 +143,7 @@ array (
             'label' => 'LBL_DESCRIPTION',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
@@ -190,23 +195,6 @@ array (
         3 => 
         array (
           0 => 'campaign_name',
-        ),
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'date_entered',
-            'customCode' => '{$fields.date_entered.value} {$APP.LBL_BY} {$fields.created_by_name.value}',
-          ),
-          1 => 
-          array (
-            'name' => 'date_modified',
-            'label' => 'LBL_DATE_MODIFIED',
-            'customCode' => '{$fields.date_modified.value} {$APP.LBL_BY} {$fields.modified_by_name.value}',
-          ),
         ),
       ),
     ),
