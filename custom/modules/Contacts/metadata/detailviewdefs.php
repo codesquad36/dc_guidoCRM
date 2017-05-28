@@ -232,6 +232,19 @@ array (
         array (
           0 => 
           array (
+            'name' => 'huisnummer_c',
+            'label' => 'LBL_HUISNUMMER_c',
+          ),
+          1 => 
+          array (
+            'name' => 'toevoeging_c',
+            'label' => 'LBL_TOEVOEGING_C',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
             'name' => 'primary_address_street',
             'label' => 'LBL_PRIMARY_ADDRESS',
             'type' => 'address',
@@ -251,7 +264,7 @@ array (
             ),
           ),
         ),
-        8 => 
+        9 => 
         array (
           0 => 
           array (
@@ -264,7 +277,7 @@ array (
             'label' => 'LBL_ACTIECODE',
           ),
         ),
-        9 => 
+        10 => 
         array (
           0 => 
           array (
@@ -274,7 +287,7 @@ array (
           ),
           1 => '',
         ),
-        10 => 
+        11 => 
         array (
           0 => 
           array (
@@ -287,7 +300,7 @@ array (
             'label' => 'LBL_WACHTWOORD',
           ),
         ),
-        11 => 
+        12 => 
         array (
           0 => 
           array (
@@ -300,7 +313,7 @@ array (
             'label' => 'LBL_CAMPAIGN',
           ),
         ),
-        12 => 
+        13 => 
         array (
           0 => 
           array (
