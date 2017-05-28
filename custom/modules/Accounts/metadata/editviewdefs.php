@@ -70,13 +70,22 @@ array (
         array (
           0 => 
           array (
+            'name' => 'grootaandeelhouder',
+            'label' => 'LBL_GROONTAANDEELHOUDER',
+          ),
+          1 => '',
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
             'name' => 'website',
             'type' => 'link',
             'label' => 'LBL_WEBSITE',
           ),
           1 => '',
         ),
-        2 => 
+        3 => 
         array (
           0 => 
           array (
@@ -85,7 +94,7 @@ array (
             'label' => 'LBL_EMAIL',
           ),
         ),
-        3 => 
+        4 => 
         array (
           0 => 
           array (
@@ -98,7 +107,7 @@ array (
             'label' => 'LBL_TOEVOEGING_C',
           ),
         ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -113,7 +122,7 @@ array (
             'label' => 'LBL_RELATIETYPE',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
@@ -143,7 +152,7 @@ array (
             ),
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 
           array (
@@ -151,7 +160,7 @@ array (
             'label' => 'LBL_DESCRIPTION',
           ),
         ),
-        7 => 
+        8 => 
         array (
           0 => 
           array (
@@ -159,11 +168,11 @@ array (
             'label' => 'LBL_ASSIGNED_TO',
           ),
         ),
-        8 => 
+        9 => 
         array (
           0 => 'parent_name',
         ),
-        9 => 
+        10 => 
         array (
           0 => 'campaign_name',
         ),
