@@ -1,5 +1,5 @@
 <?php
-// created: 2017-05-27 14:32:46
+// created: 2017-05-28 16:50:49
 $mod_strings = array (
   'LBL_DELETE_USER_CONFIRM' => 'Wanneer gegevens van een gebruiker worden verwijdert, worden corresponderende werknemers gegevens eveneens verwijdert. Nadat de gebruiker is verwijdert zullen alle workflow gegevens en raportages waar de desbetreffende gebruiker vermeld is, bijgewerkt dienen te worden.<br/><br/>Het verwijderen van een gebruiker kan niet ongedaan gemaakt worden.',
   'LBL_DELETE_GROUP_CONFIRM' => 'Weet u zeker dat u deze groepsgebruiker wilt verwijderen? Klik op OK om de gebruiker te verwijderen. <br> Na het klikken op OK krijgt u de mogelijkheid om records toegewezen aan de groepsgebruiker aan een andere gebruiker toe te wijzen.',

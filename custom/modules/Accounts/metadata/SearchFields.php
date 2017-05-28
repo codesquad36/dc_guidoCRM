@@ -222,4 +222,8 @@ $searchFields['Accounts'] = array (
   array (
     'query_type' => 'default',
   ),
+  'shipping_address_street' => 
+  array (
+    'query_type' => 'default',
+  ),
 );

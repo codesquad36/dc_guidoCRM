@@ -42,11 +42,6 @@ array (
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_PANEL_ADVANCED' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
       ),
       'syncDetailEditViews' => true,
     ),
@@ -75,32 +70,38 @@ array (
         array (
           0 => 
           array (
-            'name' => 'grootaandeelhouder',
-            'label' => 'LBL_GROONTAANDEELHOUDER',
-          ),
-          1 => '',
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
             'name' => 'website',
             'type' => 'link',
             'label' => 'LBL_WEBSITE',
           ),
           1 => 
           array (
-            'name' => 'house_number',
-            'label' => 'LBL_HOUSE_NUMBER',
+            'name' => 'phone_fax',
+            'label' => 'LBL_FAX',
           ),
         ),
-        3 => 
+        2 => 
         array (
           0 => 
           array (
             'name' => 'email1',
             'studio' => 'false',
             'label' => 'LBL_EMAIL',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'regio_c',
+            'studio' => 'visible',
+            'label' => 'LBL_REGIO',
+          ),
+          1 => 
+          array (
+            'name' => 'relatietype_c',
+            'studio' => 'visible',
+            'label' => 'LBL_RELATIETYPE',
           ),
         ),
         4 => 
@@ -149,24 +150,11 @@ array (
             'label' => 'LBL_ASSIGNED_TO',
           ),
         ),
-      ),
-      'LBL_PANEL_ADVANCED' => 
-      array (
-        0 => 
-        array (
-          0 => 'account_type',
-          1 => 'industry',
-        ),
-        1 => 
-        array (
-          0 => 'annual_revenue',
-          1 => 'employees',
-        ),
-        2 => 
+        7 => 
         array (
           0 => 'parent_name',
         ),
-        3 => 
+        8 => 
         array (
           0 => 'campaign_name',
         ),

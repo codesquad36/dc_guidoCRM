@@ -48,11 +48,6 @@ array (
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_PANEL_ADVANCED' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
       ),
       'syncDetailEditViews' => true,
     ),
@@ -79,15 +74,6 @@ array (
         array (
           0 => 
           array (
-            'name' => 'grootaandeelhouder',
-            'label' => 'LBL_GROONTAANDEELHOUDER',
-          ),
-          1 => '',
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
             'name' => 'website',
             'type' => 'link',
             'label' => 'LBL_WEBSITE',
@@ -98,17 +84,33 @@ array (
           ),
           1 => 
           array (
-            'name' => 'house_number',
-            'label' => 'LBL_HOUSE_NUMBER',
+            'name' => 'phone_fax',
+            'comment' => 'The fax phone number of this company',
+            'label' => 'LBL_FAX',
           ),
         ),
-        3 => 
+        2 => 
         array (
           0 => 
           array (
             'name' => 'email1',
             'studio' => 'false',
             'label' => 'LBL_EMAIL',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'regio_c',
+            'studio' => 'visible',
+            'label' => 'LBL_REGIO',
+          ),
+          1 => 
+          array (
+            'name' => 'relatietype_c',
+            'studio' => 'visible',
+            'label' => 'LBL_RELATIETYPE',
           ),
         ),
         4 => 
@@ -151,40 +153,7 @@ array (
             'label' => 'LBL_ASSIGNED_TO',
           ),
         ),
-      ),
-      'LBL_PANEL_ADVANCED' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'account_type',
-            'comment' => 'The Company is of this type',
-            'label' => 'LBL_TYPE',
-          ),
-          1 => 
-          array (
-            'name' => 'industry',
-            'comment' => 'The company belongs in this industry',
-            'label' => 'LBL_INDUSTRY',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'annual_revenue',
-            'comment' => 'Annual revenue for this company',
-            'label' => 'LBL_ANNUAL_REVENUE',
-          ),
-          1 => 
-          array (
-            'name' => 'employees',
-            'comment' => 'Number of employees, varchar to accomodate for both number (100) or range (50-100)',
-            'label' => 'LBL_EMPLOYEES',
-          ),
-        ),
-        2 => 
+        7 => 
         array (
           0 => 
           array (
@@ -192,7 +161,7 @@ array (
             'label' => 'LBL_MEMBER_OF',
           ),
         ),
-        3 => 
+        8 => 
         array (
           0 => 'campaign_name',
         ),

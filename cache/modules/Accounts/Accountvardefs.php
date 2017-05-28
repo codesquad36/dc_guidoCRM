@@ -919,6 +919,14 @@
       'len' => '200',
       'inline_edit' => true,
     ),
+    'grootaandeelhouder' => 
+    array (
+      'name' => 'grootaandeelhouder',
+      'vname' => 'LBL_GROONTAANDEELHOUDER',
+      'type' => 'bool',
+      'default' => '0',
+      'reportable' => true,
+    ),
     'regio_c' => 
     array (
       'inline_edit' => '1',

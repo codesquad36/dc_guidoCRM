@@ -1,5 +1,5 @@
 <?php
-// created: 2017-05-27 14:33:16
+// created: 2017-05-28 16:50:57
 $mod_strings = array (
   'db_last_name' => 'LBL_LIST_LAST_NAME',
   'db_first_name' => 'LBL_LIST_FIRST_NAME',
@@ -20,8 +20,8 @@ $mod_strings = array (
   'LBL_ALT_ADDRESS_STATE' => 'Alternate Address State:',
   'LBL_ALT_ADDRESS_STREET_2' => 'Alternate Address Street 2:',
   'LBL_ALT_ADDRESS_STREET_3' => 'Alternate Address Street 3:',
-  'LBL_ALT_ADDRESS_STREET' => 'Alternate Address Street:',
-  'LBL_ALTERNATE_ADDRESS' => 'Other Address:',
+  'LBL_ALT_ADDRESS_STREET' => 'Street Name',
+  'LBL_ALTERNATE_ADDRESS' => 'Mailing address',
   'LBL_ALT_ADDRESS' => 'Other Address:',
   'LBL_ANY_ADDRESS' => 'Any Address:',
   'LBL_ANY_EMAIL' => 'Any Email:',
@@ -112,7 +112,7 @@ $mod_strings = array (
   'LBL_PRIMARY_ADDRESS_STATE' => 'Primary Address State:',
   'LBL_PRIMARY_ADDRESS_STREET_2' => 'Primary Address Street 2:',
   'LBL_PRIMARY_ADDRESS_STREET_3' => 'Primary Address Street 3:',
-  'LBL_PRIMARY_ADDRESS_STREET' => 'Primary Address Street:',
+  'LBL_PRIMARY_ADDRESS_STREET' => 'Street Name',
   'LBL_PRIMARY_ADDRESS' => 'Primary Address:',
   'LBL_PRODUCTS_TITLE' => 'Products',
   'LBL_RELATED_CONTACTS_TITLE' => 'Related Contacts',
@@ -200,4 +200,9 @@ $mod_strings = array (
   'LBL_PORTAL_USER_TYPE' => 'Portal User Type',
   'LBL_PORTAL_ACCOUNT_DISABLED' => 'Account Disabled',
   'LBL_JOOMLA_ACCOUNT_ID' => 'Joomla Account ID',
+  'LBL_PRIMARY_STREET' => 'Street Name',
+  'LBL_ALT_STREET' => 'Alternate Street Name',
+  'LBL_TOEVOEGING_C' => 'Addition',
+  'LBL_HUISNUMMER_c' => 'House Number',
+  'LBL_IK_BEN_LID_VAN_LEDENPANEL' => 'I am member of a member panel',
 );

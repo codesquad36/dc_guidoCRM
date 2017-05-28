@@ -39,6 +39,32 @@ $dictionary['Contact']['fields']['hoekentuons_c']['labelValue']='Hoe kent u ons?
 
  
 
+$dictionary['Contact']['fields']['huisnummer_c'] =
+    array (
+      'inline_edit' => '1',
+      'labelValue' => 'Huisnummer',
+      'required' => false,
+      'name' => 'huisnummer_c',
+      'vname' => 'LBL_HUISNUMMER_c',
+      'type' => 'varchar',
+      'massupdate' => '0',
+      'default' => '',
+      'no_default' => false,
+      'comments' => '',
+      'help' => '',
+      'importable' => 'true',
+      'duplicate_merge' => 'disabled',
+      'duplicate_merge_dom_value' => '0',
+      'audited' => false,
+      'reportable' => true,
+      'unified_search' => false,
+      'merge_filter' => 'disabled',
+      'len' => '255',
+      'size' => '20',
+    );
+
+
+
  // created: 2017-04-25 23:30:36
 $dictionary['Contact']['fields']['gebruikersnaam_c']['inline_edit']='1';
 $dictionary['Contact']['fields']['gebruikersnaam_c']['labelValue']='Gebruikersnaam';
@@ -78,6 +104,13 @@ $dictionary['Contact']['fields']['machtingsid_c']['labelValue']='Machtings ID';
  // created: 2017-04-25 23:40:21
 $dictionary['Contact']['fields']['zorgverzekeraar_c']['inline_edit']='1';
 $dictionary['Contact']['fields']['zorgverzekeraar_c']['labelValue']='Zorgverzekeraar';
+
+ 
+
+ // created: 2017-05-28 16:05:39
+$dictionary['Contact']['fields']['primary_address_street']['inline_edit']=true;
+$dictionary['Contact']['fields']['primary_address_street']['comments']='Street address for primary address';
+$dictionary['Contact']['fields']['primary_address_street']['merge_filter']='disabled';
 
  
 
@@ -122,6 +155,33 @@ $dictionary['Contact']['fields']['welkomstgeschenk_c']['labelValue']='Welkomstge
 
  
 
+$dictionary['Contact']['fields']['ik_ben_lid_van_ledenpanel_c'] =
+    array (
+      'inline_edit' => '1',
+      'labelValue' => 'Ik ben lid van ledenpanel',
+      'required' => false,
+      'name' => 'ik_ben_lid_van_ledenpanel_c',
+      'vname' => 'LBL_IK_BEN_LID_VAN_LEDENPANEL',
+      'type' => 'enum',
+      'massupdate' => '0',
+      'default' => NULL,
+      'no_default' => false,
+      'comments' => '',
+      'help' => '',
+      'importable' => 'true',
+      'duplicate_merge' => 'disabled',
+      'duplicate_merge_dom_value' => '0',
+      'audited' => false,
+      'reportable' => true,
+      'unified_search' => false,
+      'merge_filter' => 'disabled',
+      'len' => 100,
+      'size' => '20',
+      'options' => 'ik_ben_lid_van_ledenpanel_c_list',
+    );
+
+
+
  // created: 2017-04-25 23:32:57
 $dictionary['Contact']['fields']['lidmaatschap_c']['inline_edit']='1';
 $dictionary['Contact']['fields']['lidmaatschap_c']['labelValue']='Lidmaatschap';
@@ -154,6 +214,13 @@ $dictionary['Contact']['fields']['geslacht_c']['labelValue']='Geslacht';
 
  
 
+ // created: 2017-05-28 16:06:20
+$dictionary['Contact']['fields']['alt_address_street']['inline_edit']=true;
+$dictionary['Contact']['fields']['alt_address_street']['comments']='Street address for alternate address';
+$dictionary['Contact']['fields']['alt_address_street']['merge_filter']='disabled';
+
+ 
+
  // created: 2017-05-09 17:11:59
 $dictionary['Contact']['fields']['aantalgratismaanden_c']['inline_edit']='1';
 $dictionary['Contact']['fields']['aantalgratismaanden_c']['labelValue']='Aantal gratis maanden';
@@ -167,6 +234,32 @@ $dictionary['Contact']['fields']['primary_address_city']['comments']='City for p
 $dictionary['Contact']['fields']['primary_address_city']['merge_filter']='disabled';
 
  
+
+$dictionary['Contact']['fields']['toevoeging_c'] =
+    array (
+      'inline_edit' => '1',
+      'labelValue' => 'Toevoeging',
+      'required' => false,
+      'name' => 'toevoeging_c',
+      'vname' => 'LBL_TOEVOEGING_C',
+      'type' => 'varchar',
+      'massupdate' => '0',
+      'default' => '',
+      'no_default' => false,
+      'comments' => '',
+      'help' => '',
+      'importable' => 'true',
+      'duplicate_merge' => 'disabled',
+      'duplicate_merge_dom_value' => '0',
+      'audited' => false,
+      'reportable' => true,
+      'unified_search' => false,
+      'merge_filter' => 'disabled',
+      'len' => '255',
+      'size' => '20',
+    );
+
+
 
  // created: 2017-04-25 23:30:54
 $dictionary['Contact']['fields']['wachtwoord_c']['inline_edit']='1';

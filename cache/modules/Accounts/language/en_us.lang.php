@@ -1,5 +1,5 @@
 <?php
-// created: 2017-05-27 14:33:16
+// created: 2017-05-28 16:50:57
 $mod_strings = array (
   'db_name' => 'LBL_LIST_ACCOUNT_NAME',
   'db_website' => 'LBL_LIST_WEBSITE',
@@ -138,5 +138,8 @@ $mod_strings = array (
   'LBL_EXPORT_ASSIGNED_USER_NAME' => 'Assigned User Name',
   'LBL_CONTACT_HISTORY_SUBPANEL_TITLE' => 'Related Contacts\' Emails',
   'LBL_PRODUCTS_SERVICES_PURCHASED_SUBPANEL_TITLE' => 'Products and Services Purchased',
+  'LBL_PRIMARY_STREET' => 'Street Name',
+  'LBL_ALT_STREET' => 'Alternate Street Name',
   'LBL_HOUSE_NUMBER' => 'House Number',
+  'LBL_GROONTAANDEELHOUDER' => 'Groota shareholder',
 );

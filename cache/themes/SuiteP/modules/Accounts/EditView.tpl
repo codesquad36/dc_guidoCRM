@@ -179,25 +179,22 @@ title='' tabindex=''  >
 <div class="col-xs-12 col-sm-6 edit-view-row-item">
 
 
-<div class="col-xs-12 col-sm-4 label" data-label="LBL_HOUSE_NUMBER">
+<div class="col-xs-12 col-sm-4 label" data-label="LBL_FAX">
 
-{capture name="label" assign="label"}{sugar_translate label='LBL_HOUSE_NUMBER' module='Accounts'}{/capture}
+{capture name="label" assign="label"}{sugar_translate label='LBL_FAX' module='Accounts'}{/capture}
 {$label|strip_semicolon}:
 
 </div>
 
-<div class="col-xs-12 col-sm-8 edit-view-field " type="varchar" field="house_number"  >
+<div class="col-xs-12 col-sm-8 edit-view-field " type="phone" field="phone_fax"  class="phone">
 {counter name="panelFieldCount" print=false}
 
-{if strlen($fields.house_number.value) <= 0}
-{assign var="value" value=$fields.house_number.default_value }
+{if strlen($fields.phone_fax.value) <= 0}
+{assign var="value" value=$fields.phone_fax.default_value }
 {else}
-{assign var="value" value=$fields.house_number.value }
+{assign var="value" value=$fields.phone_fax.value }
 {/if}  
-<input type='text' name='{$fields.house_number.name}' 
-id='{$fields.house_number.name}' size='30' 
-maxlength='200' 
-value='{$value}' title=''      >
+<input type='text' name='{$fields.phone_fax.name}' id='{$fields.phone_fax.name}' size='30' maxlength='100' value='{$value}' title='' tabindex=''	  class="phone" >
 </div>
 
 <!-- [/hide] -->
@@ -225,6 +222,577 @@ value='{$value}' title=''      >
 
 <!-- [/hide] -->
 </div>
+<div class="clear"></div>
+
+
+
+<div class="col-xs-12 col-sm-6 edit-view-row-item">
+
+
+<div class="col-xs-12 col-sm-4 label" data-label="LBL_REGIO">
+
+{capture name="label" assign="label"}{sugar_translate label='LBL_REGIO' module='Accounts'}{/capture}
+{$label|strip_semicolon}:
+
+</div>
+
+<div class="col-xs-12 col-sm-8 edit-view-field " type="multienum" field="regio_c"  >
+{counter name="panelFieldCount" print=false}
+
+{if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
+<input type="hidden" id="{$fields.regio_c.name}_multiselect"
+name="{$fields.regio_c.name}_multiselect" value="true">
+{multienum_to_array string=$fields.regio_c.value default=$fields.regio_c.default assign="values"}
+<select id="{$fields.regio_c.name}"
+name="{$fields.regio_c.name}[]"
+multiple="true" size='6' style="width:150" title='' tabindex=""  
+>
+{html_options options=$fields.regio_c.options selected=$values}
+</select>
+{else}
+{assign var="field_options" value=$fields.regio_c.options }
+{capture name="field_val"}{$fields.regio_c.value}{/capture}
+{assign var="field_val" value=$smarty.capture.field_val}
+{capture name="ac_key"}{$fields.regio_c.name}{/capture}
+{assign var="ac_key" value=$smarty.capture.ac_key}
+<input type="hidden" id="{$fields.regio_c.name}_multiselect"
+name="{$fields.regio_c.name}_multiselect" value="true">
+{multienum_to_array string=$fields.regio_c.value default=$fields.regio_c.default assign="values"}
+<select style='display:none' id="{$fields.regio_c.name}"
+name="{$fields.regio_c.name}[]"
+multiple="true" size='6' style="width:150" title='' tabindex=""  
+>
+{html_options options=$fields.regio_c.options selected=$values}
+</select>
+<input
+id="{$fields.regio_c.name}-input"
+name="{$fields.regio_c.name}-input"
+size="60"
+type="text" style="vertical-align: top;">
+<span class="id-ff multiple">
+<button type="button">
+<img src="{sugar_getimagepath file="id-ff-down.png"}" id="{$fields.regio_c.name}-image">
+</button>
+<button type="button"
+id="btn-clear-{$fields.regio_c.name}-input"
+title="Clear"
+onclick="SUGAR.clearRelateField(this.form, '{$fields.regio_c.name}-input', '{$fields.regio_c.name};');SUGAR.AutoComplete.{$ac_key}.inputNode.updateHidden()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
+</span>
+{literal}
+<script>
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal} = [];
+	{/literal}
+
+			{literal}
+		YUI().use('datasource', 'datasource-jsonschema', function (Y) {
+					SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds = new Y.DataSource.Function({
+					    source: function (request) {
+					    	var selectElem = document.getElementById("{/literal}{$fields.regio_c.name}{literal}");
+					    	var ret = [];
+					    	for (i=0;i<selectElem.options.length;i++)
+					    		if (!(selectElem.options[i].value=='' && selectElem.options[i].innerHTML==''))
+					    			ret.push({'key':selectElem.options[i].value,'text':selectElem.options[i].innerHTML});
+					    	return ret;
+					    }
+					});
+				});
+		{/literal}
+	
+	{literal}
+	YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters","node-event-simulate", function (Y) {
+		{/literal}
+		
+	    SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{$fields.regio_c.name}-input');
+	    SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{$fields.regio_c.name}-image');
+	    SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{$fields.regio_c.name}');
+
+					SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
+			SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
+			SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
+			if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
+				{/literal}
+				SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+				SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
+				{literal}
+			}
+			{/literal}
+			if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
+				{/literal}
+				SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+				SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
+				{literal}
+			}
+			{/literal}
+				
+				{literal}
+	    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
+	        activateFirstItem: true,
+	        allowTrailingDelimiter: true,
+			{/literal}
+	        minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
+	        queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
+	        queryDelimiter: ',',
+	        zIndex: 99999,
+
+						{literal}
+			source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
+			
+	        resultTextLocator: 'text',
+	        resultHighlighter: 'phraseMatch',
+	        resultFilters: 'phraseMatch',
+	        // Chain together a startsWith filter followed by a custom result filter
+	        // that only displays tags that haven't already been selected.
+	        resultFilters: ['phraseMatch', function (query, results) {
+		        // Split the current input value into an array based on comma delimiters.
+	        	var selected = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value').split(/\s*,\s*/);
+	        
+	            // Convert the array into a hash for faster lookups.
+	            selected = Y.Array.hash(selected);
+
+	            // Filter out any results that are already selected, then return the
+	            // array of filtered results.
+	            return Y.Array.filter(results, function (result) {
+	               return !selected.hasOwnProperty(result.text);
+	            });
+	        }]
+	    });
+		{/literal}{literal}
+		if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
+		    // expand the dropdown options upon focus
+		    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function () {
+		        SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
+		    });
+		}
+
+				    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateHidden = function() {
+				var index_array = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value').split(/\s*,\s*/);
+
+				var selectElem = document.getElementById("{/literal}{$fields.regio_c.name}{literal}");
+
+				var oTable = {};
+		    	for (i=0;i<selectElem.options.length;i++){
+		    		if (selectElem.options[i].selected)
+		    			oTable[selectElem.options[i].value] = true;
+		    	}
+
+				for (i=0;i<selectElem.options.length;i++){
+					selectElem.options[i].selected=false;
+				}
+
+				var nTable = {};
+
+				for (i=0;i<index_array.length;i++){
+					var key = index_array[i];
+					for (c=0;c<selectElem.options.length;c++)
+						if (selectElem.options[c].innerHTML == key){
+							selectElem.options[c].selected=true;
+							nTable[selectElem.options[c].value]=1;
+						}
+				}
+
+				//the following two loops check to see if the selected options are different from before.
+				//oTable holds the original select. nTable holds the new one
+				var fireEvent=false;
+				for (n in nTable){
+					if (n=='')
+						continue;
+		    		if (!oTable.hasOwnProperty(n))
+		    			fireEvent = true; //the options are different, fire the event
+		    	}
+		    	
+		    	for (o in oTable){
+		    		if (o=='')
+		    			continue;
+		    		if (!nTable.hasOwnProperty(o))
+		    			fireEvent=true; //the options are different, fire the event
+		    	}
+
+		    	//if the selected options are different from before, fire the 'change' event
+		    	if (fireEvent){
+		    		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('change');
+		    	}
+		    };
+
+		    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateText = function() {
+		    	//get last option typed into the input widget
+		    	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.set(SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value'));
+				var index_array = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value').split(/\s*,\s*/);
+				//create a string ret_string as a comma-delimited list of text from selectElem options.
+				var selectElem = document.getElementById("{/literal}{$fields.regio_c.name}{literal}");
+				var ret_array = [];
+
+                if (selectElem==null || selectElem.options == null)
+					return;
+
+				for (i=0;i<selectElem.options.length;i++){
+					if (selectElem.options[i].selected && selectElem.options[i].innerHTML!=''){
+						ret_array.push(selectElem.options[i].innerHTML);
+					}
+				}
+
+				//index array - array from input
+				//ret array - array from select
+
+				var sorted_array = [];
+				var notsorted_array = [];
+				for (i=0;i<index_array.length;i++){
+					for (c=0;c<ret_array.length;c++){
+						if (ret_array[c]==index_array[i]){
+							sorted_array.push(ret_array[c]);
+							ret_array.splice(c,1);
+						}
+					}
+				}
+				ret_string = ret_array.concat(sorted_array).join(', ');
+				if (ret_string.match(/^\s*$/))
+					ret_string='';
+				else
+					ret_string+=', ';
+				
+				//update the input widget
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.set('value', ret_string);
+		    };
+
+		    function updateTextOnInterval(){
+		    	if (document.activeElement != document.getElementById("{/literal}{$fields.regio_c.name}-input{literal}"))
+		    		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateText();
+		    	setTimeout(updateTextOnInterval,100);
+		    }
+
+		    updateTextOnInterval();
+		
+					SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('click', function(e) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('click');
+			});
+			
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('dblclick', function(e) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('dblclick');
+			});
+
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function(e) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('focus');
+			});
+
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mouseup', function(e) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mouseup');
+			});
+
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mousedown', function(e) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mousedown');
+			});
+
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('blur', function(e) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('blur');
+			});
+		
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('blur', function () {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateHidden();
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateText();
+		});
+	
+	    // when they click on the arrow image, toggle the visibility of the options
+	    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputImage.on('click', function () {
+			if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.show();
+			}
+			else{
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.focus();
+			}
+	    });
+	
+		if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
+		    // After a tag is selected, send an empty query to update the list of tags.
+		    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.after('select', function () {
+		      SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
+		      SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.show();
+			  SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateHidden();
+			  SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateText();
+		    });
+		} else {
+		    // After a tag is selected, send an empty query to update the list of tags.
+		    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.after('select', function () {
+			  SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateHidden();
+			  SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.updateText();
+		    });
+		}
+	});
+	</script>
+{/literal}
+{/if}
+</div>
+
+<!-- [/hide] -->
+</div>
+
+
+<div class="col-xs-12 col-sm-6 edit-view-row-item">
+
+
+<div class="col-xs-12 col-sm-4 label" data-label="LBL_RELATIETYPE">
+
+{capture name="label" assign="label"}{sugar_translate label='LBL_RELATIETYPE' module='Accounts'}{/capture}
+{$label|strip_semicolon}:
+
+</div>
+
+<div class="col-xs-12 col-sm-8 edit-view-field " type="enum" field="relatietype_c"  >
+{counter name="panelFieldCount" print=false}
+
+{if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
+<select name="{$fields.relatietype_c.name}" 
+id="{$fields.relatietype_c.name}" 
+title=''       
+>
+{if isset($fields.relatietype_c.value) && $fields.relatietype_c.value != ''}
+{html_options options=$fields.relatietype_c.options selected=$fields.relatietype_c.value}
+{else}
+{html_options options=$fields.relatietype_c.options selected=$fields.relatietype_c.default}
+{/if}
+</select>
+{else}
+{assign var="field_options" value=$fields.relatietype_c.options }
+{capture name="field_val"}{$fields.relatietype_c.value}{/capture}
+{assign var="field_val" value=$smarty.capture.field_val}
+{capture name="ac_key"}{$fields.relatietype_c.name}{/capture}
+{assign var="ac_key" value=$smarty.capture.ac_key}
+<select style='display:none' name="{$fields.relatietype_c.name}" 
+id="{$fields.relatietype_c.name}" 
+title=''          
+>
+{if isset($fields.relatietype_c.value) && $fields.relatietype_c.value != ''}
+{html_options options=$fields.relatietype_c.options selected=$fields.relatietype_c.value}
+{else}
+{html_options options=$fields.relatietype_c.options selected=$fields.relatietype_c.default}
+{/if}
+</select>
+<input
+id="{$fields.relatietype_c.name}-input"
+name="{$fields.relatietype_c.name}-input"
+size="30"
+value="{$field_val|lookup:$field_options}"
+type="text" style="vertical-align: top;">
+<span class="id-ff multiple">
+<button type="button"><img src="{sugar_getimagepath file="id-ff-down.png"}" id="{$fields.relatietype_c.name}-image"></button><button type="button"
+id="btn-clear-{$fields.relatietype_c.name}-input"
+title="Clear"
+onclick="SUGAR.clearRelateField(this.form, '{$fields.relatietype_c.name}-input', '{$fields.relatietype_c.name}');sync_{$fields.relatietype_c.name}()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
+</span>
+{literal}
+<script>
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal} = [];
+	{/literal}
+
+			{literal}
+		(function (){
+			var selectElem = document.getElementById("{/literal}{$fields.relatietype_c.name}{literal}");
+			
+			if (typeof select_defaults =="undefined")
+				select_defaults = [];
+			
+			select_defaults[selectElem.id] = {key:selectElem.value,text:''};
+
+			//get default
+			for (i=0;i<selectElem.options.length;i++){
+				if (selectElem.options[i].value==selectElem.value)
+					select_defaults[selectElem.id].text = selectElem.options[i].innerHTML;
+			}
+
+			//SUGAR.AutoComplete.{$ac_key}.ds = 
+			//get options array from vardefs
+			var options = SUGAR.AutoComplete.getOptionsArray("");
+
+			YUI().use('datasource', 'datasource-jsonschema',function (Y) {
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds = new Y.DataSource.Function({
+				    source: function (request) {
+				    	var ret = [];
+				    	for (i=0;i<selectElem.options.length;i++)
+				    		if (!(selectElem.options[i].value=='' && selectElem.options[i].innerHTML==''))
+				    			ret.push({'key':selectElem.options[i].value,'text':selectElem.options[i].innerHTML});
+				    	return ret;
+				    }
+				});
+			});
+		})();
+		{/literal}
+	
+	{literal}
+		YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", "node","node-event-simulate", function (Y) {
+	{/literal}
+			
+	SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{$fields.relatietype_c.name}-input');
+	SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{$fields.relatietype_c.name}-image');
+	SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{$fields.relatietype_c.name}');
+	
+			{literal}
+			function SyncToHidden(selectme){
+				var selectElem = document.getElementById("{/literal}{$fields.relatietype_c.name}{literal}");
+				var doSimulateChange = false;
+				
+				if (selectElem.value!=selectme)
+					doSimulateChange=true;
+				
+				selectElem.value=selectme;
+
+				for (i=0;i<selectElem.options.length;i++){
+					selectElem.options[i].selected=false;
+					if (selectElem.options[i].value==selectme)
+						selectElem.options[i].selected=true;
+				}
+
+				if (doSimulateChange)
+					SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('change');
+			}
+
+			//global variable 
+			sync_{/literal}{$fields.relatietype_c.name}{literal} = function(){
+				SyncToHidden();
+			}
+			function syncFromHiddenToWidget(){
+
+				var selectElem = document.getElementById("{/literal}{$fields.relatietype_c.name}{literal}");
+
+				//if select no longer on page, kill timer
+				if (selectElem==null || selectElem.options == null)
+					return;
+
+				var currentvalue = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value');
+
+				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.simulate('keyup');
+
+				for (i=0;i<selectElem.options.length;i++){
+
+					if (selectElem.options[i].value==selectElem.value && document.activeElement != document.getElementById('{/literal}{$fields.relatietype_c.name}-input{literal}'))
+						SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value',selectElem.options[i].innerHTML);
+				}
+			}
+
+            YAHOO.util.Event.onAvailable("{/literal}{$fields.relatietype_c.name}{literal}", syncFromHiddenToWidget);
+		{/literal}
+
+		SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
+		SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
+		SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
+		if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
+			{/literal}
+			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+			SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
+			{literal}
+		}
+		{/literal}
+		if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
+			{/literal}
+			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+			SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
+			{literal}
+		}
+		{/literal}
+		
+	SUGAR.AutoComplete.{$ac_key}.optionsVisible = false;
+	
+	{literal}
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
+		activateFirstItem: true,
+		{/literal}
+		minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
+		queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
+		zIndex: 99999,
+
+				
+		{literal}
+		source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
+		
+		resultTextLocator: 'text',
+		resultHighlighter: 'phraseMatch',
+		resultFilters: 'phraseMatch',
+	});
+
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover = function(ex){
+		var hover = YAHOO.util.Dom.getElementsByClassName('dccontent');
+		if(hover[0] != null){
+			if (ex) {
+				var h = '1000px';
+				hover[0].style.height = h;
+			}
+			else{
+				hover[0].style.height = '';
+			}
+		}
+	}
+		
+	if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
+		// expand the dropdown options upon focus
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function () {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = true;
+		});
+	}
+
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('click', function(e) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('click');
+		});
+		
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('dblclick', function(e) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('dblclick');
+		});
+
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function(e) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('focus');
+		});
+
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mouseup', function(e) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mouseup');
+		});
+
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mousedown', function(e) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mousedown');
+		});
+
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('blur', function(e) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('blur');
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = false;
+			var selectElem = document.getElementById("{/literal}{$fields.relatietype_c.name}{literal}");
+			//if typed value is a valid option, do nothing
+			for (i=0;i<selectElem.options.length;i++)
+				if (selectElem.options[i].innerHTML==SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value'))
+					return;
+			
+			//typed value is invalid, so set the text and the hidden to blank
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value', select_defaults[selectElem.id].text);
+			SyncToHidden(select_defaults[selectElem.id].key);
+		});
+	
+	// when they click on the arrow image, toggle the visibility of the options
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputImage.ancestor().on('click', function () {
+		if (SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible) {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.blur();
+		} else {
+			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.focus();
+		}
+	});
+
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('query', function () {
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.set('value', '');
+	});
+
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('visibleChange', function (e) {
+		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover(e.newVal); // expand
+	});
+
+	// when they select an option, set the hidden input with the KEY, to be saved
+	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('select', function(e) {
+		SyncToHidden(e.result.raw.key);
+	});
+ 
+});
+</script> 
+{/literal}
+{/if}
+</div>
+
+<!-- [/hide] -->
+</div>
+<div class="clear"></div>
 <div class="clear"></div>
 
 
@@ -476,623 +1044,6 @@ SUGAR.util.doWhen(
 <!-- [/hide] -->
 </div>
 <div class="clear"></div>
-</div>                    </div>
-</div>
-</div>
-
-
-
-
-<div class="panel panel-default">
-<div class="panel-heading ">
-<a class="" role="button" data-toggle="collapse-edit" aria-expanded="false">
-<div class="col-xs-10 col-sm-11 col-md-11">
-{sugar_translate label='LBL_PANEL_ADVANCED' module='Accounts'}
-</div>
-</a>
-</div>
-<div class="panel-body panel-collapse collapse in" id="detailpanel_0">
-<div class="tab-content">
-<!-- tab_panel_content.tpl -->
-<div class="row edit-view-row">
-
-
-
-<div class="col-xs-12 col-sm-6 edit-view-row-item">
-
-
-<div class="col-xs-12 col-sm-4 label" data-label="LBL_TYPE">
-
-{capture name="label" assign="label"}{sugar_translate label='LBL_TYPE' module='Accounts'}{/capture}
-{$label|strip_semicolon}:
-
-</div>
-
-<div class="col-xs-12 col-sm-8 edit-view-field " type="enum" field="account_type"  >
-{counter name="panelFieldCount" print=false}
-
-{if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
-<select name="{$fields.account_type.name}" 
-id="{$fields.account_type.name}" 
-title=''       
->
-{if isset($fields.account_type.value) && $fields.account_type.value != ''}
-{html_options options=$fields.account_type.options selected=$fields.account_type.value}
-{else}
-{html_options options=$fields.account_type.options selected=$fields.account_type.default}
-{/if}
-</select>
-{else}
-{assign var="field_options" value=$fields.account_type.options }
-{capture name="field_val"}{$fields.account_type.value}{/capture}
-{assign var="field_val" value=$smarty.capture.field_val}
-{capture name="ac_key"}{$fields.account_type.name}{/capture}
-{assign var="ac_key" value=$smarty.capture.ac_key}
-<select style='display:none' name="{$fields.account_type.name}" 
-id="{$fields.account_type.name}" 
-title=''          
->
-{if isset($fields.account_type.value) && $fields.account_type.value != ''}
-{html_options options=$fields.account_type.options selected=$fields.account_type.value}
-{else}
-{html_options options=$fields.account_type.options selected=$fields.account_type.default}
-{/if}
-</select>
-<input
-id="{$fields.account_type.name}-input"
-name="{$fields.account_type.name}-input"
-size="30"
-value="{$field_val|lookup:$field_options}"
-type="text" style="vertical-align: top;">
-<span class="id-ff multiple">
-<button type="button"><img src="{sugar_getimagepath file="id-ff-down.png"}" id="{$fields.account_type.name}-image"></button><button type="button"
-id="btn-clear-{$fields.account_type.name}-input"
-title="Clear"
-onclick="SUGAR.clearRelateField(this.form, '{$fields.account_type.name}-input', '{$fields.account_type.name}');sync_{$fields.account_type.name}()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
-</span>
-{literal}
-<script>
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal} = [];
-	{/literal}
-
-			{literal}
-		(function (){
-			var selectElem = document.getElementById("{/literal}{$fields.account_type.name}{literal}");
-			
-			if (typeof select_defaults =="undefined")
-				select_defaults = [];
-			
-			select_defaults[selectElem.id] = {key:selectElem.value,text:''};
-
-			//get default
-			for (i=0;i<selectElem.options.length;i++){
-				if (selectElem.options[i].value==selectElem.value)
-					select_defaults[selectElem.id].text = selectElem.options[i].innerHTML;
-			}
-
-			//SUGAR.AutoComplete.{$ac_key}.ds = 
-			//get options array from vardefs
-			var options = SUGAR.AutoComplete.getOptionsArray("");
-
-			YUI().use('datasource', 'datasource-jsonschema',function (Y) {
-				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds = new Y.DataSource.Function({
-				    source: function (request) {
-				    	var ret = [];
-				    	for (i=0;i<selectElem.options.length;i++)
-				    		if (!(selectElem.options[i].value=='' && selectElem.options[i].innerHTML==''))
-				    			ret.push({'key':selectElem.options[i].value,'text':selectElem.options[i].innerHTML});
-				    	return ret;
-				    }
-				});
-			});
-		})();
-		{/literal}
-	
-	{literal}
-		YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", "node","node-event-simulate", function (Y) {
-	{/literal}
-			
-	SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{$fields.account_type.name}-input');
-	SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{$fields.account_type.name}-image');
-	SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{$fields.account_type.name}');
-	
-			{literal}
-			function SyncToHidden(selectme){
-				var selectElem = document.getElementById("{/literal}{$fields.account_type.name}{literal}");
-				var doSimulateChange = false;
-				
-				if (selectElem.value!=selectme)
-					doSimulateChange=true;
-				
-				selectElem.value=selectme;
-
-				for (i=0;i<selectElem.options.length;i++){
-					selectElem.options[i].selected=false;
-					if (selectElem.options[i].value==selectme)
-						selectElem.options[i].selected=true;
-				}
-
-				if (doSimulateChange)
-					SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('change');
-			}
-
-			//global variable 
-			sync_{/literal}{$fields.account_type.name}{literal} = function(){
-				SyncToHidden();
-			}
-			function syncFromHiddenToWidget(){
-
-				var selectElem = document.getElementById("{/literal}{$fields.account_type.name}{literal}");
-
-				//if select no longer on page, kill timer
-				if (selectElem==null || selectElem.options == null)
-					return;
-
-				var currentvalue = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value');
-
-				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.simulate('keyup');
-
-				for (i=0;i<selectElem.options.length;i++){
-
-					if (selectElem.options[i].value==selectElem.value && document.activeElement != document.getElementById('{/literal}{$fields.account_type.name}-input{literal}'))
-						SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value',selectElem.options[i].innerHTML);
-				}
-			}
-
-            YAHOO.util.Event.onAvailable("{/literal}{$fields.account_type.name}{literal}", syncFromHiddenToWidget);
-		{/literal}
-
-		SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
-		SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
-		SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
-		if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
-			{/literal}
-			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-			SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
-			{literal}
-		}
-		{/literal}
-		if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
-			{/literal}
-			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-			SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
-			{literal}
-		}
-		{/literal}
-		
-	SUGAR.AutoComplete.{$ac_key}.optionsVisible = false;
-	
-	{literal}
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
-		activateFirstItem: true,
-		{/literal}
-		minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
-		queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
-		zIndex: 99999,
-
-				
-		{literal}
-		source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
-		
-		resultTextLocator: 'text',
-		resultHighlighter: 'phraseMatch',
-		resultFilters: 'phraseMatch',
-	});
-
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover = function(ex){
-		var hover = YAHOO.util.Dom.getElementsByClassName('dccontent');
-		if(hover[0] != null){
-			if (ex) {
-				var h = '1000px';
-				hover[0].style.height = h;
-			}
-			else{
-				hover[0].style.height = '';
-			}
-		}
-	}
-		
-	if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
-		// expand the dropdown options upon focus
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function () {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = true;
-		});
-	}
-
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('click', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('click');
-		});
-		
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('dblclick', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('dblclick');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('focus');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mouseup', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mouseup');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mousedown', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mousedown');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('blur', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('blur');
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = false;
-			var selectElem = document.getElementById("{/literal}{$fields.account_type.name}{literal}");
-			//if typed value is a valid option, do nothing
-			for (i=0;i<selectElem.options.length;i++)
-				if (selectElem.options[i].innerHTML==SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value'))
-					return;
-			
-			//typed value is invalid, so set the text and the hidden to blank
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value', select_defaults[selectElem.id].text);
-			SyncToHidden(select_defaults[selectElem.id].key);
-		});
-	
-	// when they click on the arrow image, toggle the visibility of the options
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputImage.ancestor().on('click', function () {
-		if (SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.blur();
-		} else {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.focus();
-		}
-	});
-
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('query', function () {
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.set('value', '');
-	});
-
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('visibleChange', function (e) {
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover(e.newVal); // expand
-	});
-
-	// when they select an option, set the hidden input with the KEY, to be saved
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('select', function(e) {
-		SyncToHidden(e.result.raw.key);
-	});
- 
-});
-</script> 
-{/literal}
-{/if}
-</div>
-
-<!-- [/hide] -->
-</div>
-
-
-<div class="col-xs-12 col-sm-6 edit-view-row-item">
-
-
-<div class="col-xs-12 col-sm-4 label" data-label="LBL_INDUSTRY">
-
-{capture name="label" assign="label"}{sugar_translate label='LBL_INDUSTRY' module='Accounts'}{/capture}
-{$label|strip_semicolon}:
-
-</div>
-
-<div class="col-xs-12 col-sm-8 edit-view-field " type="enum" field="industry"  >
-{counter name="panelFieldCount" print=false}
-
-{if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
-<select name="{$fields.industry.name}" 
-id="{$fields.industry.name}" 
-title=''       
->
-{if isset($fields.industry.value) && $fields.industry.value != ''}
-{html_options options=$fields.industry.options selected=$fields.industry.value}
-{else}
-{html_options options=$fields.industry.options selected=$fields.industry.default}
-{/if}
-</select>
-{else}
-{assign var="field_options" value=$fields.industry.options }
-{capture name="field_val"}{$fields.industry.value}{/capture}
-{assign var="field_val" value=$smarty.capture.field_val}
-{capture name="ac_key"}{$fields.industry.name}{/capture}
-{assign var="ac_key" value=$smarty.capture.ac_key}
-<select style='display:none' name="{$fields.industry.name}" 
-id="{$fields.industry.name}" 
-title=''          
->
-{if isset($fields.industry.value) && $fields.industry.value != ''}
-{html_options options=$fields.industry.options selected=$fields.industry.value}
-{else}
-{html_options options=$fields.industry.options selected=$fields.industry.default}
-{/if}
-</select>
-<input
-id="{$fields.industry.name}-input"
-name="{$fields.industry.name}-input"
-size="30"
-value="{$field_val|lookup:$field_options}"
-type="text" style="vertical-align: top;">
-<span class="id-ff multiple">
-<button type="button"><img src="{sugar_getimagepath file="id-ff-down.png"}" id="{$fields.industry.name}-image"></button><button type="button"
-id="btn-clear-{$fields.industry.name}-input"
-title="Clear"
-onclick="SUGAR.clearRelateField(this.form, '{$fields.industry.name}-input', '{$fields.industry.name}');sync_{$fields.industry.name}()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
-</span>
-{literal}
-<script>
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal} = [];
-	{/literal}
-
-			{literal}
-		(function (){
-			var selectElem = document.getElementById("{/literal}{$fields.industry.name}{literal}");
-			
-			if (typeof select_defaults =="undefined")
-				select_defaults = [];
-			
-			select_defaults[selectElem.id] = {key:selectElem.value,text:''};
-
-			//get default
-			for (i=0;i<selectElem.options.length;i++){
-				if (selectElem.options[i].value==selectElem.value)
-					select_defaults[selectElem.id].text = selectElem.options[i].innerHTML;
-			}
-
-			//SUGAR.AutoComplete.{$ac_key}.ds = 
-			//get options array from vardefs
-			var options = SUGAR.AutoComplete.getOptionsArray("");
-
-			YUI().use('datasource', 'datasource-jsonschema',function (Y) {
-				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds = new Y.DataSource.Function({
-				    source: function (request) {
-				    	var ret = [];
-				    	for (i=0;i<selectElem.options.length;i++)
-				    		if (!(selectElem.options[i].value=='' && selectElem.options[i].innerHTML==''))
-				    			ret.push({'key':selectElem.options[i].value,'text':selectElem.options[i].innerHTML});
-				    	return ret;
-				    }
-				});
-			});
-		})();
-		{/literal}
-	
-	{literal}
-		YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", "node","node-event-simulate", function (Y) {
-	{/literal}
-			
-	SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{$fields.industry.name}-input');
-	SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{$fields.industry.name}-image');
-	SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{$fields.industry.name}');
-	
-			{literal}
-			function SyncToHidden(selectme){
-				var selectElem = document.getElementById("{/literal}{$fields.industry.name}{literal}");
-				var doSimulateChange = false;
-				
-				if (selectElem.value!=selectme)
-					doSimulateChange=true;
-				
-				selectElem.value=selectme;
-
-				for (i=0;i<selectElem.options.length;i++){
-					selectElem.options[i].selected=false;
-					if (selectElem.options[i].value==selectme)
-						selectElem.options[i].selected=true;
-				}
-
-				if (doSimulateChange)
-					SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('change');
-			}
-
-			//global variable 
-			sync_{/literal}{$fields.industry.name}{literal} = function(){
-				SyncToHidden();
-			}
-			function syncFromHiddenToWidget(){
-
-				var selectElem = document.getElementById("{/literal}{$fields.industry.name}{literal}");
-
-				//if select no longer on page, kill timer
-				if (selectElem==null || selectElem.options == null)
-					return;
-
-				var currentvalue = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value');
-
-				SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.simulate('keyup');
-
-				for (i=0;i<selectElem.options.length;i++){
-
-					if (selectElem.options[i].value==selectElem.value && document.activeElement != document.getElementById('{/literal}{$fields.industry.name}-input{literal}'))
-						SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value',selectElem.options[i].innerHTML);
-				}
-			}
-
-            YAHOO.util.Event.onAvailable("{/literal}{$fields.industry.name}{literal}", syncFromHiddenToWidget);
-		{/literal}
-
-		SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
-		SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
-		SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
-		if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
-			{/literal}
-			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-			SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
-			{literal}
-		}
-		{/literal}
-		if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
-			{/literal}
-			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-			SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
-			{literal}
-		}
-		{/literal}
-		
-	SUGAR.AutoComplete.{$ac_key}.optionsVisible = false;
-	
-	{literal}
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
-		activateFirstItem: true,
-		{/literal}
-		minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
-		queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
-		zIndex: 99999,
-
-				
-		{literal}
-		source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
-		
-		resultTextLocator: 'text',
-		resultHighlighter: 'phraseMatch',
-		resultFilters: 'phraseMatch',
-	});
-
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover = function(ex){
-		var hover = YAHOO.util.Dom.getElementsByClassName('dccontent');
-		if(hover[0] != null){
-			if (ex) {
-				var h = '1000px';
-				hover[0].style.height = h;
-			}
-			else{
-				hover[0].style.height = '';
-			}
-		}
-	}
-		
-	if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
-		// expand the dropdown options upon focus
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function () {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = true;
-		});
-	}
-
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('click', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('click');
-		});
-		
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('dblclick', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('dblclick');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('focus');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mouseup', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mouseup');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mousedown', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mousedown');
-		});
-
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('blur', function(e) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('blur');
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = false;
-			var selectElem = document.getElementById("{/literal}{$fields.industry.name}{literal}");
-			//if typed value is a valid option, do nothing
-			for (i=0;i<selectElem.options.length;i++)
-				if (selectElem.options[i].innerHTML==SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value'))
-					return;
-			
-			//typed value is invalid, so set the text and the hidden to blank
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value', select_defaults[selectElem.id].text);
-			SyncToHidden(select_defaults[selectElem.id].key);
-		});
-	
-	// when they click on the arrow image, toggle the visibility of the options
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputImage.ancestor().on('click', function () {
-		if (SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible) {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.blur();
-		} else {
-			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.focus();
-		}
-	});
-
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('query', function () {
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.set('value', '');
-	});
-
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('visibleChange', function (e) {
-		SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover(e.newVal); // expand
-	});
-
-	// when they select an option, set the hidden input with the KEY, to be saved
-	SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('select', function(e) {
-		SyncToHidden(e.result.raw.key);
-	});
- 
-});
-</script> 
-{/literal}
-{/if}
-</div>
-
-<!-- [/hide] -->
-</div>
-<div class="clear"></div>
-<div class="clear"></div>
-
-
-
-<div class="col-xs-12 col-sm-6 edit-view-row-item">
-
-
-<div class="col-xs-12 col-sm-4 label" data-label="LBL_ANNUAL_REVENUE">
-
-{capture name="label" assign="label"}{sugar_translate label='LBL_ANNUAL_REVENUE' module='Accounts'}{/capture}
-{$label|strip_semicolon}:
-
-</div>
-
-<div class="col-xs-12 col-sm-8 edit-view-field " type="varchar" field="annual_revenue"  >
-{counter name="panelFieldCount" print=false}
-
-{if strlen($fields.annual_revenue.value) <= 0}
-{assign var="value" value=$fields.annual_revenue.default_value }
-{else}
-{assign var="value" value=$fields.annual_revenue.value }
-{/if}  
-<input type='text' name='{$fields.annual_revenue.name}' 
-id='{$fields.annual_revenue.name}' size='30' 
-maxlength='100' 
-value='{$value}' title=''      >
-</div>
-
-<!-- [/hide] -->
-</div>
-
-
-<div class="col-xs-12 col-sm-6 edit-view-row-item">
-
-
-<div class="col-xs-12 col-sm-4 label" data-label="LBL_EMPLOYEES">
-
-{capture name="label" assign="label"}{sugar_translate label='LBL_EMPLOYEES' module='Accounts'}{/capture}
-{$label|strip_semicolon}:
-
-</div>
-
-<div class="col-xs-12 col-sm-8 edit-view-field " type="varchar" field="employees"  >
-{counter name="panelFieldCount" print=false}
-
-{if strlen($fields.employees.value) <= 0}
-{assign var="value" value=$fields.employees.default_value }
-{else}
-{assign var="value" value=$fields.employees.value }
-{/if}  
-<input type='text' name='{$fields.employees.name}' 
-id='{$fields.employees.name}' size='30' 
-maxlength='10' 
-value='{$value}' title=''      >
-</div>
-
-<!-- [/hide] -->
-</div>
-<div class="clear"></div>
-<div class="clear"></div>
 
 
 
@@ -1331,6 +1282,7 @@ addToValidate('EditView', 'campaign_name', 'relate', false,'{/literal}{sugar_tra
 addToValidate('EditView', 'jjwg_maps_address_c', 'varchar', false,'{/literal}{sugar_translate label='LBL_JJWG_MAPS_ADDRESS' module='Accounts' for_js=true}{literal}' );
 addToValidate('EditView', 'relatietype_c', 'enum', false,'{/literal}{sugar_translate label='LBL_RELATIETYPE' module='Accounts' for_js=true}{literal}' );
 addToValidate('EditView', 'house_number', 'varchar', false,'{/literal}{sugar_translate label='LBL_HOUSE_NUMBER' module='Accounts' for_js=true}{literal}' );
+addToValidate('EditView', 'grootaandeelhouder', 'bool', false,'{/literal}{sugar_translate label='LBL_GROONTAANDEELHOUDER' module='Accounts' for_js=true}{literal}' );
 addToValidate('EditView', 'regio_c[]', 'multienum', false,'{/literal}{sugar_translate label='LBL_REGIO' module='Accounts' for_js=true}{literal}' );
 addToValidate('EditView', 'jjwg_maps_geocode_status_c', 'varchar', false,'{/literal}{sugar_translate label='LBL_JJWG_MAPS_GEOCODE_STATUS' module='Accounts' for_js=true}{literal}' );
 addToValidate('EditView', 'jjwg_maps_lat_c', 'float', false,'{/literal}{sugar_translate label='LBL_JJWG_MAPS_LAT' module='Accounts' for_js=true}{literal}' );

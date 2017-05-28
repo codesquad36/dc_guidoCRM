@@ -3,4 +3,6 @@
 $mod_strings = array (
   'LBL_BILLING_ADDRESS_STREET' => 'Street Name:',
   'LBL_SHIPPING_ADDRESS_STREET' => 'Street Name:',
+  'LBL_PRIMARY_STREET' => 'Street Name',
+  'LBL_ALT_STREET' => 'Alternate Street Name',
 );

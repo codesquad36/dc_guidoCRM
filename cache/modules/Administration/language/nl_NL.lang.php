@@ -1,5 +1,5 @@
 <?php
-// created: 2017-05-27 14:33:16
+// created: 2017-05-28 16:50:57
 $mod_strings = array (
   'LBL_CAPTCHA_HELP_TEXT' => 'CAPTCHA is een test challenge-response test die wordt gebruikt om ervoor te zorgen dat reacties niet worden gegenereerd door een programma. Verkrijg een Public key en een Public key voor reCAPTCHA op de website http://recaptcha.net/.',
   'CAPTCHA' => 'Captcha Validatie',
