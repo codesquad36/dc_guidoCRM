@@ -82,12 +82,7 @@ array (
               'link_target' => '_blank',
             ),
           ),
-          1 => 
-          array (
-            'name' => 'phone_fax',
-            'comment' => 'The fax phone number of this company',
-            'label' => 'LBL_FAX',
-          ),
+          1 => '',
         ),
         2 => 
         array (
@@ -102,6 +97,19 @@ array (
         array (
           0 => 
           array (
+            'name' => 'huisnummer_c',
+            'label' => 'LBL_HUISNUMMER_c',
+          ),
+          1 => 
+          array (
+            'name' => 'toevoeging_c',
+            'label' => 'LBL_TOEVOEGING_C',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
             'name' => 'regio_c',
             'studio' => 'visible',
             'label' => 'LBL_REGIO',
@@ -113,7 +121,7 @@ array (
             'label' => 'LBL_RELATIETYPE',
           ),
         ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -136,7 +144,7 @@ array (
             ),
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
@@ -145,7 +153,7 @@ array (
             'label' => 'LBL_DESCRIPTION',
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 
           array (
@@ -153,7 +161,7 @@ array (
             'label' => 'LBL_ASSIGNED_TO',
           ),
         ),
-        7 => 
+        8 => 
         array (
           0 => 
           array (
@@ -161,7 +169,7 @@ array (
             'label' => 'LBL_MEMBER_OF',
           ),
         ),
-        8 => 
+        9 => 
         array (
           0 => 'campaign_name',
         ),
