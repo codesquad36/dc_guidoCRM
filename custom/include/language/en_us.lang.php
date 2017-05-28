@@ -171,3 +171,10 @@ $GLOBALS['app_list_strings']['Land_list']=array (
   'Belgie' => 'Belgie',
   'Duitsland' => 'Duitsland',
 );
+
+$app_list_strings['ik_ben_lid_van_ledenpanel_c_list']=array (
+  '' => '',
+  'Geen' => 'Geen',
+  'Offline' => 'Offline',
+  'Online' => 'Online',
+);

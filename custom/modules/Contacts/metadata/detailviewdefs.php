@@ -304,6 +304,15 @@ array (
         array (
           0 => 
           array (
+            'name' => 'ik_ben_lid_van_ledenpanel_c',
+            'label' => 'LBL_IK_BEN_LID_VAN_LEDENPANEL',
+          ),
+          1 => '',
+        ),
+        13 => 
+        array (
+          0 => 
+          array (
             'name' => 'report_to_name',
             'label' => 'LBL_REPORTS_TO',
           ),
@@ -313,7 +322,7 @@ array (
             'label' => 'LBL_CAMPAIGN',
           ),
         ),
-        13 => 
+        14 => 
         array (
           0 => 
           array (
