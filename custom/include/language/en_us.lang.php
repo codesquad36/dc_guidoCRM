@@ -178,3 +178,8 @@ $app_list_strings['ik_ben_lid_van_ledenpanel_c_list']=array (
   'Offline' => 'Offline',
   'Online' => 'Online',
 );
+$app_list_strings['Ik_ben_lid_van_ledenservice_c_list']=array (
+  '' => '',
+  'Ja' => 'Ja',
+  'Nee' => 'Nee',
+);

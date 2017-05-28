@@ -110,6 +110,10 @@ array (
         array (
           'file' => 'modules/Leads/Lead.js',
         ),
+        1 => 
+        array (
+          'file' => 'custom/modules/Contacts/JS/customJS.js',
+        ),
       ),
       'useTabs' => true,
       'tabDefs' => 
@@ -307,7 +311,10 @@ array (
             'name' => 'ik_ben_lid_van_ledenpanel_c',
             'label' => 'LBL_IK_BEN_LID_VAN_LEDENPANEL',
           ),
-          1 => '',
+          1 => array (
+            'name' => 'Ik_ben_lid_van_ledenservice_c',
+            'label' => 'LBL_IK_BEN_LID_VAN_LEDENSERVICE_C',
+            ),
         ),
         13 => 
         array (

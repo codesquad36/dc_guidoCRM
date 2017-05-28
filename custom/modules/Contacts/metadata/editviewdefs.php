@@ -30,6 +30,13 @@ array (
           'field' => '30',
         ),
       ),
+      'includes' => 
+      array (
+        0 => 
+        array (
+          'file' => 'custom/modules/Contacts/JS/customJS.js',
+        ),
+      ),
       'useTabs' => true,
       'tabDefs' => 
       array (
@@ -241,7 +248,17 @@ array (
             'name' => 'ik_ben_lid_van_ledenpanel_c',
             'label' => 'LBL_IK_BEN_LID_VAN_LEDENPANEL',
           ),
-          1 => '',
+          1 => array (
+            'name' => 'Ik_ben_lid_van_ledenservice_c',
+            'label' => 'LBL_IK_BEN_LID_VAN_LEDENSERVICE_C',
+            'displayParams' =>
+            array (
+              'field' =>
+              array (
+                'onChange' => 'lidnummerShowHide()',
+              ),
+            ),
+            ),
         ),
         13 => 
         array (
