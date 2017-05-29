@@ -9,5 +9,7 @@ $mod_strings['LBL_POLISNUMMER_C'] = 'Polisnummer';
 $mod_strings['LBL_FUNCTIE_C'] = 'Functie';
 $mod_strings['LBL_COLLECTIVITEITSNAAM_C'] = 'Collectiviteitsnaam';
 $mod_strings['LBL_ZORG_SCHADEVERZEKERAAR_C'] = 'Zorg-/Schadeverzekeraar';
+$mod_strings['LBL_MANTELZORGER_C'] = 'Mantelzorger';
+$mod_strings['LBL_BEWINDVOERDER_C'] = 'Bewindvoerder';
 
 ?>
