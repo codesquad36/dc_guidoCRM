@@ -30,7 +30,10 @@ $GLOBALS['app_list_strings']['relatietype_0']=array (
   'Brandweer' => 'Brandweer',
   'Gemeente' => 'Gemeente',
   'GGD' => 'GGD',
-  'Leveranciers' => 'Leveranciers',
+  'LeveranciersVKA' => 'Leveranciers VKA',
+  'LeveranciersZlimthuisDoetinchem' => 'Leveranciers Zlimthuis Doetinchem',
+  'LeveranciersZlimthuisHoogeveen' => 'Leveranciers Zlimthuis Hoogeveen',
+  'LeveranciersLivelife' => 'Leveranciers Livelife',
   'Onderwijsinsstellingen' => 'Onderwijsinsstellingen',
   'Ouderenbonden' => 'Ouderenbonden',
   'Politie' => 'Politie',
@@ -41,6 +44,13 @@ $GLOBALS['app_list_strings']['relatietype_0']=array (
   'Welzijnsorganisaties' => 'Welzijnsorganisaties',
   'Woningcooperaties' => 'Woningcooperaties ',
   'Zorgorganisaties' => 'Zorgorganisaties',
+  'Livelife' => 'Livelife',
+  'Zlimthuis' => 'Zlimthuis',
+  'KruiswerkAchterhoek' => 'Kruiswerk Achterhoek',
+  'KruiswerkNL' => 'Kruiswerk NL',
+  'Valizo' => 'Valizo',
+  'Thuis_and_Gezond' => 'Thuis & Gezond',
+  'Zorg_en_Verzekerd' => 'Zorg en Verzekerd',
 );
 $GLOBALS['app_list_strings']['lidstatus_list']=array (
   'Actief' => 'Actief',
@@ -181,4 +191,9 @@ $app_list_strings['Ik_ben_lid_van_ledenservice_c_list']=array (
   '' => '',
   'Ja' => 'Ja',
   'Nee' => 'Nee',
+);
+$app_list_strings['deal_status_dom']=array (
+	'Prospect' => 'Prospect',
+	'Klant' => 'Klant',
+	'KlantMeansCustomer' => 'Klant means customer',
 );

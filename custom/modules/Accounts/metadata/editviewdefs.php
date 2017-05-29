@@ -32,6 +32,7 @@ array (
         0 => 
         array (
           'file' => 'modules/Accounts/Account.js',
+          'file' => 'custom/modules/Accounts/js/custom_account.js',
         ),
       ),
       'useTabs' => false,
@@ -83,7 +84,12 @@ array (
             'type' => 'link',
             'label' => 'LBL_WEBSITE',
           ),
-          1 => '',
+          1 => 
+          array (
+            'name' => 'regio_c',
+            'studio' => 'visible',
+            'label' => 'LBL_REGIO',
+          ),
         ),
         3 => 
         array (
@@ -111,16 +117,11 @@ array (
         array (
           0 => 
           array (
-            'name' => 'regio_c',
-            'studio' => 'visible',
-            'label' => 'LBL_REGIO',
-          ),
-          1 => 
-          array (
             'name' => 'relatietype_c',
             'studio' => 'visible',
             'label' => 'LBL_RELATIETYPE',
           ),
+          1 => 'deal_status',
         ),
         6 => 
         array (
