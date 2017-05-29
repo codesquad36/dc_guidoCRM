@@ -346,6 +346,19 @@ array (
         array (
           0 => 
           array (
+            'name' => 'mantelzorger_c',
+            'label' => 'LBL_MANTELZORGER_C',
+          ),
+          1 => 
+          array (
+            'name' => 'bewindvoerder_c',
+            'label' => 'LBL_BEWINDVOERDER_C',
+          ),
+        ),
+        16 => 
+        array (
+          0 => 
+          array (
             'name' => 'report_to_name',
             'label' => 'LBL_REPORTS_TO',
           ),
@@ -355,7 +368,7 @@ array (
             'label' => 'LBL_CAMPAIGN',
           ),
         ),
-        16 => 
+        17 => 
         array (
           0 => 
           array (
