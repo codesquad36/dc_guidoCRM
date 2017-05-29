@@ -320,6 +320,32 @@ array (
         array (
           0 => 
           array (
+            'name' => 'functie_c',
+            'label' => 'LBL_FUNCTIE_C',
+          ),
+          1 => 
+          array (
+            'name' => 'collectiviteitsnaam_c',
+            'label' => 'LBL_COLLECTIVITEITSNAAM_C',
+          ),
+        ),
+        14 => 
+        array (
+          0 => 
+          array (
+            'name' => 'zorg_schadeverzekeraar_c',
+            'label' => 'LBL_ZORG_SCHADEVERZEKERAAR_C',
+          ),
+          1 => 
+          array (
+            'name' => 'polisnummer_c',
+            'label' => 'LBL_POLISNUMMER_C',
+          ),
+        ),
+        15 => 
+        array (
+          0 => 
+          array (
             'name' => 'report_to_name',
             'label' => 'LBL_REPORTS_TO',
           ),
@@ -329,7 +355,7 @@ array (
             'label' => 'LBL_CAMPAIGN',
           ),
         ),
-        14 => 
+        16 => 
         array (
           0 => 
           array (

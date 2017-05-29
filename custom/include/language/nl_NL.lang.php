@@ -197,3 +197,31 @@ $app_list_strings['deal_status_dom']=array (
 	'Klant' => 'Klant',
 	'KlantMeansCustomer' => 'Klant means customer',
 );
+
+$GLOBALS['app_list_strings']['functie_c_list']=array (
+  'account_manager' => 'Account Manager',
+  'Beleidsmedewerker' => 'Beleidsmedewerker',
+  'Burgemeester' => 'Burgemeester',
+  'Directeur' => 'Directeur',
+  'project_manager' => 'Project Manager',
+  'Raadslid' => 'Raadslid',
+  'sales_manager' => 'Sales Manager',
+  'Secretaresse' => 'Secretaresse',
+  'Wethouder' => 'Wethouder',
+  'Overige' => 'Overige',
+);
+
+$GLOBALS['app_list_strings']['collectiviteitsnaam_c_list']=array (
+  'Bolsius' => 'Bolsius',
+  'kruiswerk_achterhoek' => 'Kruiswerk Achterhoek',
+  'FNV' => 'FNV',
+  'Sensire' => 'Sensire',
+  'van_der_stad_zorgcollectief' => 'Van Der Stad Zorgcollectief',
+);
+
+$GLOBALS['app_list_strings']['zorg_schadeverzekeraar_c_list']=array (
+  'Menzis' => 'Menzis',
+  'CZ' => 'CZ',
+  'VGZ' => 'VGZ',
+  'Zilverenkruis' => 'Zilverenkruis',
+);

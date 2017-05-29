@@ -183,3 +183,32 @@ $app_list_strings['Ik_ben_lid_van_ledenservice_c_list']=array (
   'Ja' => 'Ja',
   'Nee' => 'Nee',
 );
+
+$GLOBALS['app_list_strings']['functie_c_list']=array (
+  'account_manager' => 'Account Manager',
+  'Beleidsmedewerker' => 'Policy Officer',
+  'Burgemeester' => 'Mayor',
+  'Directeur' => 'Director',
+  'project_manager' => 'Project Manager',
+  'Raadslid' => 'Councilor',
+  'sales_manager' => 'Sales Manager',
+  'Secretaresse' => 'Secretary',
+  'Wethouder' => 'Alderman',
+  'Overige' => 'Others',
+);
+
+
+$GLOBALS['app_list_strings']['collectiviteitsnaam_c_list']=array (
+  'Bolsius' => 'Bolsius',
+  'kruiswerk_achterhoek' => 'Kruiswerk Achterhoek',
+  'FNV' => 'FNV',
+  'Sensire' => 'Sensitive',
+  'van_der_stad_zorgcollectief' => 'Van der Stad care collective',
+);
+
+$GLOBALS['app_list_strings']['zorg_schadeverzekeraar_c_list']=array (
+  'Menzis' => 'Menzis',
+  'CZ' => 'CZ',
+  'VGZ' => 'VGZ',
+  'Zilverenkruis' => 'Silver Cross',
+);
