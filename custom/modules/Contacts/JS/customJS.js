@@ -14,3 +14,11 @@ function lidnummerShowHide(){
     $('#lidnummer_c').parent().parent().find('.label').show();
    }
  }
+
+function validateIBAN() {
+  var iban_c = $("#iban_c").val();
+  if (IBAN.isValid(iban_c) == false) {
+    alert('Invalid IBAN');
+    $("#iban_c").val('');
+  }
+}

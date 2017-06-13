@@ -36,6 +36,10 @@ array (
         array (
           'file' => 'custom/modules/Contacts/JS/customJS.js',
         ),
+        1 => 
+        array (
+          'file' => 'custom/include/JS/iban.js',
+        ),
       ),
       'useTabs' => true,
       'tabDefs' => 
@@ -367,6 +371,13 @@ array (
           array (
             'name' => 'iban_c',
             'label' => 'LBL_IBAN',
+            'displayParams' =>
+            array (
+              'field' =>
+              array (
+                'oninput' => 'validateIBAN()',
+              ),
+            ),
           ),
         ),
         3 => 
