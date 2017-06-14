@@ -11,5 +11,6 @@ $mod_strings['LBL_COLLECTIVITEITSNAAM_C'] = 'Collective Name';
 $mod_strings['LBL_ZORG_SCHADEVERZEKERAAR_C'] = 'Care / Insurer';
 $mod_strings['LBL_MANTELZORGER_C'] = 'Mantelzorger';
 $mod_strings['LBL_BEWINDVOERDER_C'] = 'Receiver';
+$mod_strings['LBL_PROJECT_NAME'] = 'Project';
 
 ?>
