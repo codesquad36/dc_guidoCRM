@@ -17,8 +17,34 @@ function lidnummerShowHide(){
 
 function validateIBAN() {
   var iban_c = $("#iban_c").val();
-  if (IBAN.isValid(iban_c) == false) {
-    alert('Invalid IBAN');
-    $("#iban_c").val('');
+  $("#iban_c").parent().append("<img id='iban_loader' src='themes/default/images/loading.gif'height='20'>");
+
+  if(iban_c == '' || iban_c == undefined) {
+    $("#iban_loader").remove();
+    return false;
   }
+
+  $.ajax({
+    url: 'https://openiban.com/validate/'+iban_c+'',  // replace with
+                  // dynamic value
+    data: { // pass additional options
+      "validateBankCode": true,   // (not guaranteed)
+      "getBIC": true      // (not guaranteed)
+    },
+    success: function(data) {
+      var result = data;
+      if(result.valid) {
+        $("#iban_loader").remove();
+      } 
+      else {        
+        $("#iban_loader").remove();
+        alert('Invalid IBAN');
+        $("#iban_c").val('');
+      }
+    },
+    error: function(xhr) {
+        $("#iban_loader").remove();
+        alert('Failed to validate IBAN');
+    }
+  });
 }
