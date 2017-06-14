@@ -75,11 +75,12 @@ $GLOBALS['app_list_strings']['Contactstatus_list']=array (
 );
 $GLOBALS['app_list_strings']['CollectiefIndividueel_list']=array (
   'Nieuwsbriefsynchronisatie' => 'Nieuwsbrief  synchronisatie',
-  'KruiwerkNederland' => 'Kruiswerk Nederland',
-  'Yonki.nl' => 'Yonki.nl',
-  'VKSCollectiefGratis' => 'VKS Collectief Gratis',
-  'KruiswerkAchterhoek' => 'KruiswerkAchterhoek',
-  'TestCollectief' => 'Test Collectief',
+  'KN' => 'KN',
+  'VKA' => 'VKA',
+  'Sensire' => 'Sensire',
+  'KA' => 'KA',
+  'Medipoint' => 'Medipoint',
+  'Vrijwilligers' => 'Vrijwilligers',
 );
 $GLOBALS['app_list_strings']['KruiswerkNederlandLidmaatschap_list']=array (
   'LidmaatschapKruiswerkNederlandWordtjaarlijksverlengd' => 'Lidmaatschap Kruiswerk Nederland (€ 19,50) € 19,50 Wordt jaarlijksverlengd',
