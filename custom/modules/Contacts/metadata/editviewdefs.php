@@ -307,12 +307,20 @@ array (
         array (
           0 => 
           array (
+            'name' => 'project_name',
+            'label' => 'LBL_PROJECT_NAME',
+          ),
+        ),
+        17 => 
+        array (
+          0 => 
+          array (
             'name' => 'report_to_name',
             'label' => 'LBL_REPORTS_TO',
           ),
           1 => 'campaign_name',
         ),
-        17 => 
+        18 => 
         array (
           0 => 
           array (
