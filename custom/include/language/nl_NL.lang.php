@@ -226,3 +226,11 @@ $GLOBALS['app_list_strings']['zorg_schadeverzekeraar_c_list']=array (
   'VGZ' => 'VGZ',
   'Zilverenkruis' => 'Zilverenkruis',
 );
+
+$GLOBALS['app_list_strings']['contract_type_list']=array (
+  'Intentieverklaring' => 'Intentieverklaring',
+  'Samenwerkingsovereenkomst' => 'Samenwerkingsovereenkomsts',
+  'Lease_overeenkomst' => 'Lease overeenkomst',
+  'Overige' => 'Overige',
+);
+
