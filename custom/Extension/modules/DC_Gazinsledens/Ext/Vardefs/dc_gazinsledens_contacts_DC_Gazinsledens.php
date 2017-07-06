@@ -12,6 +12,7 @@ $dictionary["DC_Gazinsledens"]["fields"]["dc_gazinsledens_contacts"] = array (
 );
 $dictionary["DC_Gazinsledens"]["fields"]["dc_gazinsledens_contacts_name"] = array (
   'name' => 'dc_gazinsledens_contacts_name',
+      'importable' => 'true',
   'type' => 'relate',
   'source' => 'non-db',
   'vname' => 'LBL_DC_GAZINSLEDENS_CONTACTS_FROM_CONTACTS_TITLE',

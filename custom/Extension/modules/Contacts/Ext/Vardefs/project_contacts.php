@@ -15,7 +15,6 @@ $dictionary['Contact']['fields']['project_name']=array(
 	'len' => 100,
 	'source' => 'non-db',
 	'unified_search' => true,
-	'importable' => 'required',
 );
 
 $dictionary['Contact']['fields']['project_id']=array(
